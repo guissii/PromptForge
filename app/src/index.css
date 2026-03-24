@@ -1,0 +1,171 @@
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+@import '@fontsource/space-mono/400.css';
+@import '@fontsource/space-mono/700.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 20% 4%;
+    --foreground: 60 10% 90%;
+    --card: 240 15% 7%;
+    --card-foreground: 60 10% 90%;
+    --popover: 240 15% 7%;
+    --popover-foreground: 60 10% 90%;
+    --primary: 158 70% 67%;
+    --primary-foreground: 240 20% 4%;
+    --secondary: 240 10% 12%;
+    --secondary-foreground: 60 10% 90%;
+    --muted: 240 10% 12%;
+    --muted-foreground: 240 5% 50%;
+    --accent: 158 70% 67%;
+    --accent-foreground: 240 20% 4%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 10% 17%;
+    --input: 240 10% 17%;
+    --ring: 158 70% 67%;
+    --radius: 0.25rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-pf-bg-primary text-pf-text-primary font-inter antialiased;
+    min-height: 100vh;
+  }
+  
+  ::selection {
+    background: rgba(110, 231, 183, 0.3);
+    color: #e8e8e0;
+  }
+}
+
+@layer components {
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #0a0a0f;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #2a2a35;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3a3a48;
+  }
+  
+  /* Focus styles */
+  .focus-glow:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(110, 231, 183, 0.3), 0 0 20px rgba(110, 231, 183, 0.15);
+    border-color: #6EE7B7;
+  }
+  
+  /* Button base styles */
+  .btn-primary {
+    @apply bg-pf-accent text-pf-bg-primary font-space font-semibold text-sm px-6 py-3 rounded-pf-sm transition-all duration-150;
+  }
+  
+  .btn-primary:hover:not(:disabled) {
+    @apply scale-[1.02] brightness-110;
+  }
+  
+  .btn-primary:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+  
+  .btn-secondary {
+    @apply bg-transparent border border-pf-border text-pf-text-primary font-space font-semibold text-sm px-6 py-3 rounded-pf-sm transition-all duration-150;
+  }
+  
+  .btn-secondary:hover {
+    @apply border-pf-border-hover bg-pf-bg-tertiary;
+  }
+  
+  /* Card styles */
+  .pf-card {
+    @apply bg-pf-bg-secondary border border-pf-border rounded-pf transition-colors duration-200;
+  }
+  
+  .pf-card:hover {
+    @apply border-pf-border-hover;
+  }
+  
+  /* Code/prompt text */
+  .pf-code {
+    @apply font-jetbrains text-sm leading-relaxed;
+  }
+  
+  /* Loading dots animation */
+  .loading-dots {
+    @apply flex items-center gap-1;
+  }
+  
+  .loading-dots span {
+    @apply w-1.5 h-1.5 bg-current rounded-full;
+    animation: pulse-dot 1.4s ease-in-out infinite;
+  }
+  
+  .loading-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  
+  .loading-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+}
+
+@layer utilities {
+  /* Easing functions */
+  .ease-out-expo {
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  .ease-quick {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Text gradient (used sparingly) */
+  .text-gradient-accent {
+    background: linear-gradient(135deg, #6EE7B7 0%, #4ade80 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Border glow */
+  .border-glow {
+    box-shadow: 0 0 20px rgba(110, 231, 183, 0.15);
+  }
+  
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
